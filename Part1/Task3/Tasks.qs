@@ -24,7 +24,20 @@ namespace QCHack.Task3 {
     // even though they apply single-qubit gates to separate qubits. Make sure you run the test
     // on your solution to check that it passes before you submit the solution!
     operation Task3_ValidTriangle (inputs : Qubit[], output : Qubit) : Unit is Adj+Ctl {
-        // ...
+        
+        use q0 = Qubit();
+        use q1 = Qubit();
+        CNOT(inputs[0],q0);
+        CNOT(inputs[1],q0);
+        CNOT(inputs[1],q1);
+        CNOT(inputs[2],q1);
+        CNOT(inputs[0],output);
+        CNOT(inputs[2],output);
+        CCNOT(q0,q1,output);
+        CNOT(inputs[2],q1);
+        CNOT(inputs[1],q1);
+        CNOT(inputs[1],q0);
+        CNOT(inputs[0],q0);
     }
 }
 
